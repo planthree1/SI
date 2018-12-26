@@ -51,8 +51,7 @@ class ServerActions implements Runnable {
 
     }
 
-    void
-            sendResult(String result, String error) {
+    void sendResult(String result, String error) {
         String msg = "{";
 
         // Usefull result
