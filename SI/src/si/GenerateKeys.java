@@ -5,6 +5,7 @@
  */
 package si;
 
+import com.google.gson.JsonObject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,6 +19,8 @@ import java.security.PublicKey;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 import java.util.Base64;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 
 public class GenerateKeys {
 
@@ -44,6 +47,11 @@ public class GenerateKeys {
 	public PublicKey getPublicKey() {
 		return this.publicKey;
 	}
+        
+        public static SecretKey getSymmetricKey() throws NoSuchAlgorithmException {
+            SecretKey key = KeyGenerator.getInstance("AES").generateKey();
+            return key;
+        }
 
 	public void writeToFile(String path, byte[] key) throws IOException {
 		File f = new File(path);
@@ -53,21 +61,6 @@ public class GenerateKeys {
 		fos.write(key);
 		fos.flush();
 		fos.close();
-	}
-
-	public static void main(String[] args) {
-		GenerateKeys gk;
-		try {
-			gk = new GenerateKeys(1024);
-			gk.createKeys();
-			gk.writeToFile("MyKeys/publicKey", gk.getPublicKey().getEncoded());
-			gk.writeToFile("MyKeys/privateKey", gk.getPrivateKey().getEncoded());
-		} catch (NoSuchAlgorithmException | NoSuchProviderException e) {
-			System.err.println(e.getMessage());
-		} catch (IOException e) {
-			System.err.println(e.getMessage());
-		}
-
 	}
         
         public static void create(String user, int id) throws CertificateException, UnrecoverableKeyException, GeneralSecurityException, NoSuchAlgorithmException, IOException, Exception {
@@ -83,7 +76,7 @@ public class GenerateKeys {
 
             new File(path).mkdirs();
 
-            CartaoCidadao.signForEncryption(gk.getPublicKey().getEncoded(), path);
+            //CartaoCidadao.signForEncryption(gk.getPublicKey().getEncoded(), path);
             gk.writeToFile(path + "publicKey", gk.getPublicKey().getEncoded());
 
             json.addProperty("privateKey", Base64.getEncoder().encodeToString(gk.getPrivateKey().getEncoded()));
