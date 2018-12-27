@@ -1,5 +1,6 @@
+package servidor;
 
-import cliente.PasswordEncryption;
+import si.PasswordEncryption;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -41,7 +42,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.xml.bind.DatatypeConverter;
-import org.apache.commons.io.IOUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
