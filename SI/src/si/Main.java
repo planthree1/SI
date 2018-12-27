@@ -30,7 +30,7 @@ public class Main {
         
         try {
             //x.create("Tiago", 1);
-            y.encrypt("qwertyu");
+            y.decrypt(y.encrypt("12345678"), "12345678");
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }

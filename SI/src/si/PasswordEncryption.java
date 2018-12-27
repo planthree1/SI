@@ -28,8 +28,7 @@ import javax.swing.SwingConstants;
 
 public class PasswordEncryption {
     
-    //original private static char[] password=null;
-    private static String password= "qwertyu";
+    private static char[] password=null;
     private static String salt;
     //65536
     private static int pswdIterations = 1000;
@@ -39,7 +38,6 @@ public class PasswordEncryption {
 
     // Methods
     public static String encrypt(String plainText) throws Exception {
-        /**
         try {
             do {
                 JFrame frame = new JFrame();
@@ -61,10 +59,7 @@ public class PasswordEncryption {
             } while (password == null || password.equals("") || password.length<=5);
         } catch (Exception e) {
             System.err.println("Password Inválida" + e);
-        }
-        */
-        
-        char[] charArray = password.toCharArray();
+        }       
         
         //get salt
         salt = generateSalt();
@@ -73,8 +68,7 @@ public class PasswordEncryption {
         // Derive the key
         SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
         PBEKeySpec spec = new PBEKeySpec(
-                //password
-                charArray,
+                password,
                 saltBytes,
                 pswdIterations,
                 keySize
@@ -97,7 +91,9 @@ public class PasswordEncryption {
         String encodedSalt = Base64.getEncoder().encodeToString(saltBytes);
         String encodedPackage = encodedSalt + "]" + encodedIV + "]" + encodedText;
 
+        System.out.println(encodedPackage);
         return encodedPackage;
+        
     }
 
     public static String decrypt(String encryptedText, String password) throws Exception {
@@ -130,6 +126,8 @@ public class PasswordEncryption {
         } catch (BadPaddingException e) {
             e.printStackTrace();
         }
+        
+        System.out.println(new String(decryptedTextBytes));
         return new String(decryptedTextBytes);
     }
 
