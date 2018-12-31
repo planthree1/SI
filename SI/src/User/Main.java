@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package si;
+package User;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -11,9 +11,7 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
-import java.security.UnrecoverableKeyException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.security.UnrecoverableKeyException; 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
@@ -25,16 +23,13 @@ import javax.crypto.NoSuchPaddingException;
 public class Main {
     
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException, NoSuchProviderException, GeneralSecurityException, UnrecoverableKeyException, Exception, Exception {
-        //GenerateKeys x = new GenerateKeys(0);
-        PasswordEncryption y = new PasswordEncryption();
         
-        try {
-            //x.create("Tiago", 1);
-            y.decrypt(y.encrypt("12345678"), "12345678");
-        } catch (Exception ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //GenerateKeys x = new GenerateKeys(1000);
+        //x.saveKeys();
         
+        MachineInfo x = new MachineInfo();
+        
+        x.getInfo();
     }
     
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package si;
+package User;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -37,7 +37,7 @@ import javax.crypto.spec.SecretKeySpec;
  *
  * @author TiagoRodrigues
  */
-public class SI {
+public class Si {
 
     /**
      * @param args the command line arguments
@@ -117,11 +117,11 @@ public class SI {
         SecretKey sk = kg.generateKey();
         byte[] simetricKey = sk.getEncoded();
         
-        /*
+        
         FileOutputStream fos = new FileOutputStream(new File(fileName), false);
         fos.write(simetricKey);
         fos.close();
-        */
+        
     }
     
 
