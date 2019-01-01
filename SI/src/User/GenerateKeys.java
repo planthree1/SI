@@ -5,24 +5,19 @@
  */
 package User;
 
-import com.google.gson.JsonObject;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.security.GeneralSecurityException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.security.UnrecoverableKeyException;
-import java.security.cert.CertificateException;
-import java.util.Base64;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
 
 public class GenerateKeys {
 
@@ -73,13 +68,19 @@ public class GenerateKeys {
     public void saveKeys(){
         GenerateKeys gk;
         try {
-            gk = new GenerateKeys(1024);
-            gk.createKeys();
-            gk.writeToFile("KeyPairUser/publicKey", gk.getPublicKey().getEncoded());
-            gk.writeToFile("KeyPairUser/privateKey", gk.getPrivateKey().getEncoded());
             
-            //System.out.println(gk.getPrivateKey());
-            //System.out.println(gk.getPublicKey());
+            File f = new File("KeyPairUser/publicKey");
+
+            if ((f.exists() && f.isDirectory()) != true) {
+                gk = new GenerateKeys(1024);
+                gk.createKeys();
+                gk.writeToFile("KeyPairUser/publicKey", gk.getPublicKey().getEncoded());
+                gk.writeToFile("KeyPairUser/privateKey", gk.getPrivateKey().getEncoded());
+
+                //System.out.println(gk.getPrivateKey());
+                //System.out.println(gk.getPublicKey());
+            }
+            
             
         } catch (NoSuchAlgorithmException | NoSuchProviderException e) {
             System.err.println(e.getMessage());

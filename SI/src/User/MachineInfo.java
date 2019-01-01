@@ -17,7 +17,7 @@ public class MachineInfo {
     /**
      * @param args the command line arguments
      * @throws java.io.IOException
-     */    
+     */
     public JsonObject getInfo(){
         String info;
         //opens the wmic and check the bio biosNumber number
@@ -35,7 +35,7 @@ public class MachineInfo {
         String biosNumber = sc.next();
         //System.out.println(property + ": " + biosNumber);
         
-        
+      
         
         //same thing but with the UUID (identificadodr unico universal)
         try {
@@ -52,9 +52,7 @@ public class MachineInfo {
         
         
         //System.out.println(property1 + ": " + uuid);
-        long unixTime = System.currentTimeMillis() / 1000L;     
-        
-        info = biosNumber + "/" + uuid + "/" + unixTime;
+        long unixTime = System.currentTimeMillis() / 1000L;
         
         JsonObject obj = new JsonObject();
         
@@ -62,7 +60,10 @@ public class MachineInfo {
         obj.addProperty("uuid", uuid);
         obj.addProperty("unixTime", unixTime);
         
-        //System.out.println(obj);   
+        
+        
+        
+        
         return obj;
     }
 }

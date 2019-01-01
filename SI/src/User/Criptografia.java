@@ -20,25 +20,15 @@ public class Criptografia {
     private static final String ALGO = "AES";
     // meter random byte
     private static final byte[] keyValue = new byte[]{'T', 'h', 'e', 'B', 'e', 's', 't', 'S', 'e', 'c', 'r', 'e', 't', 'K', 'e', 'y'};
+    //private static final byte[] keyValue = new byte[]{'T', 'h'};
 
-    /**
-     * Encrypt a string with AES algorithm.
-     *
-     * @param data is a string
-     * @return the encrypted string
-     */
     public String encrypt(String data) throws Exception {
         Key key = generateKey();
         Cipher c = Cipher.getInstance(ALGO);
         c.init(Cipher.ENCRYPT_MODE, key);
         byte[] encVal = c.doFinal(data.getBytes());
         
-        
-        GenerateKeys gk = new GenerateKeys(1024);
-     
-        byte[] b = Base64.getEncoder().encodeToString(encVal).getBytes();
-        gk.writeToFile("KeyPairUser/simetrickey", b);
-        
+        //return encVal;
         return Base64.getEncoder().encodeToString(encVal);
     }
 
@@ -66,7 +56,7 @@ public class Criptografia {
     /**
      * Generate a new encryption key.
      */
-    private static Key generateKey() throws Exception {
+    public Key generateKey() throws Exception {
         return new SecretKeySpec(keyValue, ALGO);
     }
 
