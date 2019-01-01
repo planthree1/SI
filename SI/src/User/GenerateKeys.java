@@ -7,6 +7,8 @@ package User;
 
 import com.google.gson.JsonObject;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -56,6 +58,16 @@ public class GenerateKeys {
         fos.write(key);
         fos.flush();
         fos.close();
+    }
+    
+    public byte[] readFromFile(String fileName) throws FileNotFoundException, IOException {
+        File file = new File(fileName);
+        byte[] ba = new byte[(int) file.length()];
+        FileInputStream fis = new FileInputStream(file);
+        fis.read(ba);
+        fis.close();
+        
+        return ba;
     }
 
     public void saveKeys(){

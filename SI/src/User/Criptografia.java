@@ -5,19 +5,10 @@
  */
 package User;
 
-import java.io.IOException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
+import java.nio.charset.Charset;
 import java.security.Key;
-import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.KeyGenerator;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
@@ -27,7 +18,6 @@ import javax.crypto.spec.SecretKeySpec;
 public class Criptografia {
     
     private static final String ALGO = "AES";
-    
     // meter random byte
     private static final byte[] keyValue = new byte[]{'T', 'h', 'e', 'B', 'e', 's', 't', 'S', 'e', 'c', 'r', 'e', 't', 'K', 'e', 'y'};
 
@@ -37,11 +27,18 @@ public class Criptografia {
      * @param data is a string
      * @return the encrypted string
      */
-    public static String encrypt(String data) throws Exception {
+    public String encrypt(String data) throws Exception {
         Key key = generateKey();
         Cipher c = Cipher.getInstance(ALGO);
         c.init(Cipher.ENCRYPT_MODE, key);
         byte[] encVal = c.doFinal(data.getBytes());
+        
+        
+        GenerateKeys gk = new GenerateKeys(1024);
+     
+        byte[] b = Base64.getEncoder().encodeToString(encVal).getBytes();
+        gk.writeToFile("KeyPairUser/simetrickey", b);
+        
         return Base64.getEncoder().encodeToString(encVal);
     }
 
@@ -51,12 +48,18 @@ public class Criptografia {
      * @param encryptedData is a string
      * @return the decrypted string
      */
-    public static String decrypt(String encryptedData) throws Exception {
+    public String decrypt(byte[] encryptedData) throws Exception {
+        
+        String encData = encryptedData.toString();
+        System.out.println(encData);
+        
         Key key = generateKey();
         Cipher c = Cipher.getInstance(ALGO);
         c.init(Cipher.DECRYPT_MODE, key);
-        byte[] decordedValue = Base64.getDecoder().decode(encryptedData);
+        byte[] decordedValue = Base64.getDecoder().decode(encData);
         byte[] decValue = c.doFinal(decordedValue);
+        
+        System.out.println(decValue);
         return new String(decValue);
     }
 

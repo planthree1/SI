@@ -62,7 +62,7 @@ public class MachineInfo {
         obj.addProperty("uuid", uuid);
         obj.addProperty("unixTime", unixTime);
         
-        System.out.println(obj);   
+        //System.out.println(obj);   
         return obj;
     }
 }

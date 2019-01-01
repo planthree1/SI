@@ -24,12 +24,22 @@ public class Main {
     
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException, NoSuchProviderException, GeneralSecurityException, UnrecoverableKeyException, Exception, Exception {
         
-        //GenerateKeys x = new GenerateKeys(1000);
-        //x.saveKeys();
+        GenerateKeys x = new GenerateKeys(1024);
+        x.saveKeys();
         
-        MachineInfo x = new MachineInfo();
+        String info;
         
-        x.getInfo();
+        MachineInfo y = new MachineInfo();
+        
+        info = y.getInfo().toString();
+        Criptografia crip = new Criptografia();
+        
+        crip.encrypt(info);
+        
+        byte[] inp = x.readFromFile("KeyPairUser/simetrickey");
+        
+        crip.decrypt(inp);
+        
     }
     
 }
