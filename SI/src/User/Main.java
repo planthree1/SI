@@ -26,18 +26,18 @@ import java.util.Scanner;
  */
 public class Main {
     
-    public static void main(String[] args) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException, NoSuchProviderException, GeneralSecurityException, UnrecoverableKeyException, Exception, Exception {
+    public static void main(String[] args) throws IOException {
         
-        //GenerateKeys x = new GenerateKeys(1024);
-        //MachineInfo machineInfo = new MachineInfo();
-        //x.saveKeys();
-        //byte[] info;
-        //info = machineInfo.getInfo().toString().getBytes();
+        /*GenerateKeys x = new GenerateKeys(1024);*/
+        MachineInfo machineInfo = new MachineInfo();
+        /*x.saveKeys();*/
+        byte[] info;
+        info = machineInfo.getInfo().toString().getBytes();
         //System.out.println(crip.encrypt(info));
 
         
 
-        Criptografia crip = new Criptografia();
+        /*Criptografia crip = new Criptografia();
         ReadKeys readkey = new ReadKeys();
         
         //gera uma chave AES
@@ -55,7 +55,7 @@ public class Main {
         //desencripta a chave AES
         byte[] recovered_message = readkey.decrypt(privateKey, secret);
         System.out.println(new String(recovered_message, "UTF8"));
-        
+        */
 
         /**
         Scanner sc = new Scanner(System.in);

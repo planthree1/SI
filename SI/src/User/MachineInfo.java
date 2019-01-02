@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import com.google.gson.JsonObject;
+import java.io.FileOutputStream;
 /**
  *
  * @author TiagoRodrigues
@@ -18,7 +19,7 @@ public class MachineInfo {
      * @param args the command line arguments
      * @throws java.io.IOException
      */
-    public JsonObject getInfo(){
+    public JsonObject getInfo() throws IOException{
         String info;
         //opens the wmic and check the bio biosNumber number
         Process process = null;
@@ -60,7 +61,11 @@ public class MachineInfo {
         obj.addProperty("uuid", uuid);
         obj.addProperty("unixTime", unixTime);
         
-        
+        String mensage = biosNumber+ "/" + uuid + "/" + unixTime;
+        byte[] mensagem = mensage.getBytes();
+        FileOutputStream fos = new FileOutputStream("mensagem.txt");
+        fos.write(mensagem);
+        fos.close();
         
         
         

@@ -31,6 +31,10 @@ public class GenerateKeys {
             this.keyGen.initialize(keylength);
     }
 
+    GenerateKeys() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public void createKeys() {
             this.pair = this.keyGen.generateKeyPair();
             this.privateKey = pair.getPrivate();
@@ -77,7 +81,7 @@ public class GenerateKeys {
                 gk.writeToFile("KeyPairUser/publicKey", gk.getPublicKey().getEncoded());
                 gk.writeToFile("KeyPairUser/privateKey", gk.getPrivateKey().getEncoded());
 
-                //System.out.println(gk.getPrivateKey());
+                System.out.println(gk.getPrivateKey());
                 //System.out.println(gk.getPublicKey());
             }
             
