@@ -36,7 +36,7 @@ public class Main {
         //System.out.println(crip.encrypt(info));
 
         
-        /**
+
         Criptografia crip = new Criptografia();
         ReadKeys readkey = new ReadKeys();
         
@@ -44,6 +44,7 @@ public class Main {
         Key key = crip.generateKey();
         //passa a chave para byte[]
         byte [] chave = key.getEncoded();
+        
         
         //le as chaves
         PublicKey publicKey = readkey.readPublicKey("KeyPairUser/publicKey");
@@ -55,8 +56,8 @@ public class Main {
         byte[] recovered_message = readkey.decrypt(privateKey, secret);
         System.out.println(new String(recovered_message, "UTF8"));
         
-        **/
-        
+
+        /**
         Scanner sc = new Scanner(System.in);
         int option = 0;
         
@@ -91,6 +92,8 @@ public class Main {
                 System.out.println("versão do programa: " +  identific.getVersion());
                 break;
         }
+        * 
+        **/
     }
    
 }

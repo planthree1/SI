@@ -19,8 +19,8 @@ public class Criptografia {
     
     private static final String ALGO = "AES";
     // meter random byte
-    private static final byte[] keyValue = new byte[]{'T', 'h', 'e', 'B', 'e', 's', 't', 'S', 'e', 'c', 'r', 'e', 't', 'K', 'e', 'y'};
-    //private static final byte[] keyValue = new byte[]{'T', 'h'};
+    //private static final byte[] keyValue = new byte[]{'T', 'h', 'e', 'B', 'e', 's', 't', 'S', 'e', 'c', 'r', 'e', 't', 'K', 'e', 'y'};
+    private static final byte[] keyValue = new byte[]{'T', 'h'};
 
     public String encrypt(String data) throws Exception {
         Key key = generateKey();
