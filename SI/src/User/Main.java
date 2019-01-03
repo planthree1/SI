@@ -5,11 +5,14 @@
  */
 package User;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.Key;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.PrivateKey;
@@ -19,6 +22,8 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,11 +33,11 @@ public class Main {
     
     public static void main(String[] args) throws IOException {
         
-        /*GenerateKeys x = new GenerateKeys(1024);*/
-        MachineInfo machineInfo = new MachineInfo();
-        /*x.saveKeys();*/
-        byte[] info;
-        info = machineInfo.getInfo().toString().getBytes();
+        //GenerateKeys x = new GenerateKeys(1024);
+        //MachineInfo machineInfo = new MachineInfo();
+        //x.saveKeys();
+        //byte[] info;
+        //info = machineInfo.getInfo().toString().getBytes();
         //System.out.println(crip.encrypt(info));
 
         
@@ -57,7 +62,7 @@ public class Main {
         System.out.println(new String(recovered_message, "UTF8"));
         */
 
-        /**
+        
         Scanner sc = new Scanner(System.in);
         int option = 0;
         
@@ -68,32 +73,68 @@ public class Main {
                 System.out.println("1 - Login");
                 System.out.println("2 - Registar");
                 System.out.println("3 - Ver dados do produto");
+                System.out.println("4 - Exit");
                 option = sc.nextInt();
-            } while(option < 1 || option > 3);
-        } catch (Exception e)
-        {
+                
+                Identification identific = new Identification();
+                MachineInfo machineinfo = new MachineInfo();
+        
+                switch(option){
+                    case 1:
+                        System.out.println("login");
+                        
+                        break;
+
+                    case 2:
+                        System.out.println("Registo");
+                        System.out.print("Nome: ");
+                        String nome = sc.next();
+
+                        //criar ficheiro com o nome do utilizador
+                        File ficheiro = new File("Users/" + nome + ".txt");
+                        //se existir
+                        if (ficheiro.exists()) {
+                            System.out.println("Utilizador já existe.");
+                            break;
+                        }
+                        
+                        //se não existir continua
+                        System.out.print("Password: ");
+                        String pass = sc.next();
+                        
+                        //escrever no ficheiro
+                        try {
+                            FileWriter user = new FileWriter("Users/" + nome + ".txt");
+                            //pass
+                            user.write(pass);
+                            user.close();
+                            FileWriter pedido = new FileWriter("Users/" + nome + "Pedido.txt");
+                            //informação da máquina usada/informação do programa
+                            pedido.write(machineinfo.getInfo() + "/" + identific.getId() + "/" + identific.getVersion());
+                            pedido.close();
+                        } catch (IOException e) {
+                            System.out.println("An error occurred.");
+                            e.printStackTrace();
+                        }
+                        
+                        System.out.print("");
+                        
+                        break;
+
+                    case 3:
+                        System.out.println("");
+                        System.out.println("id do programa: " + identific.getId());
+                        System.out.println("versão do programa: " +  identific.getVersion());
+                        break;
+                    
+                    case 4:
+                        System.out.println("good bey");
+                        break;
+                }
+            } while(option!=4);
+        } catch (Exception e) {
             System.out.println("introduz um numero");
         }
-        
-        Identification identific = new Identification();
-        
-        switch(option){
-            case 1:
-                
-                break;
-                
-            case 2:
-                
-                break;
-                
-            case 3:
-                System.out.println("");
-                System.out.println("id do programa: " + identific.getId());
-                System.out.println("versão do programa: " +  identific.getVersion());
-                break;
-        }
-        * 
-        **/
     }
-   
+    
 }

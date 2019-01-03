@@ -1,2 +1,0 @@
-cartaocidadao.IOCopier
-cartaocidadao.MergeFiles

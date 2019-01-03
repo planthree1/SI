@@ -43,6 +43,8 @@ public class Assinar {
         ks.load(null, null);
         PrivateKey chavePrivadaCC = getPrivateKeyFromCard(ks,json);
         
+        System.out.println(chavePrivadaCC);
+        
         
         byte[] digitalSignature = assinatura(document, chavePrivadaCC);
         toBase64(json,digitalSignature,"assinatura");

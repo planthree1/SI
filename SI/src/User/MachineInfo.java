@@ -19,7 +19,7 @@ public class MachineInfo {
      * @param args the command line arguments
      * @throws java.io.IOException
      */
-    public JsonObject getInfo() throws IOException{
+    public String getInfo() throws IOException{
         String info;
         //opens the wmic and check the bio biosNumber number
         Process process = null;
@@ -55,12 +55,6 @@ public class MachineInfo {
         //System.out.println(property1 + ": " + uuid);
         long unixTime = System.currentTimeMillis() / 1000L;
         
-        JsonObject obj = new JsonObject();
-        
-        obj.addProperty("biosNumber", biosNumber);
-        obj.addProperty("uuid", uuid);
-        obj.addProperty("unixTime", unixTime);
-        
         String mensage = biosNumber+ "/" + uuid + "/" + unixTime;
         byte[] mensagem = mensage.getBytes();
         FileOutputStream fos = new FileOutputStream("mensagem.txt");
@@ -69,6 +63,6 @@ public class MachineInfo {
         
         
         
-        return obj;
+        return mensage;
     }
 }
