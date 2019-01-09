@@ -30,7 +30,7 @@ import java.util.Base64;
 import java.util.Enumeration;
 import sun.misc.BASE64Encoder;
 
-public class Teste {
+public class CartaoCidadao {
     
     public static void main(String[] args) throws KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException, InvalidKeyException, SignatureException, GeneralSecurityException {
         /*byte[] yte = {'T', 'h'};

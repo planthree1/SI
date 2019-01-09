@@ -22,7 +22,7 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import java.util.Scanner;
-import java.util.logging.Level;
+import java.util.logging.Le çvel;
 import java.util.logging.Logger;
 
 /**
@@ -31,18 +31,19 @@ import java.util.logging.Logger;
  */
 public class Main {
     
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, Exception {
         
-        //GenerateKeys x = new GenerateKeys(1024);
-        //MachineInfo machineInfo = new MachineInfo();
-        //x.saveKeys();
-        //byte[] info;
-        //info = machineInfo.getInfo().toString().getBytes();
-        //System.out.println(crip.encrypt(info));
+        GenerateKeys x = new GenerateKeys(1024);
+        MachineInfo machineInfo = new MachineInfo();
+        Criptografia crip = new Criptografia();
+        x.saveKeys();
+        String info;
+        info = machineInfo.getInfo();
+        System.out.println(crip.encrypt(info));
 
         
-
-        /*Criptografia crip = new Criptografia();
+        /*
+        Criptografia crip = new Criptografia();
         ReadKeys readkey = new ReadKeys();
         
         //gera uma chave AES
@@ -63,6 +64,7 @@ public class Main {
         */
 
         
+        /*
         Scanner sc = new Scanner(System.in);
         int option = 0;
         
@@ -106,7 +108,10 @@ public class Main {
                         try {
                             FileWriter user = new FileWriter("Users/" + nome + ".txt");
                             //pass
-                            user.write(pass);
+                            
+                            Criptografia criptografia = new Criptografia();
+                            
+                            user.write(criptografia.cryptWithMD5(pass));
                             user.close();
                             FileWriter pedido = new FileWriter("Users/" + nome + "Pedido.txt");
                             //informação da máquina usada/informação do programa
@@ -135,6 +140,7 @@ public class Main {
         } catch (Exception e) {
             System.out.println("introduz um numero");
         }
+        */
     }
     
 }

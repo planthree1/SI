@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -45,7 +45,7 @@ public class TesteO {
         f.read(certificado);
         f.close();
         **/
-        File file = new File("mensagem.txt");
+        File file = new File("mensagem.txt");go
         byte[] ba = new byte[(int) file.length()];
         FileInputStream fisa = new FileInputStream(file);
         fisa.read(ba);
